@@ -1,200 +1,51 @@
-# 🧠 Lab 5: Text Classification
+## Lab 5: Text Classification
 
-## 🎯 Objective
-Xây dựng một pipeline phân loại văn bản (Text Classification) hoàn chỉnh, từ khâu tiền xử lý đến huấn luyện và đánh giá mô hình.  
-Mục tiêu:
-- Áp dụng các kỹ thuật vector hóa (CountVectorizer/TfidfVectorizer).  
-- Huấn luyện mô hình Logistic Regression.  
-- Đánh giá bằng Accuracy, Precision, Recall, F1-score.  
-- Cải thiện mô hình bằng các kỹ thuật nâng cao (Naive Bayes, bigram, char n-grams,...).  
-- So sánh hiệu năng giữa mô hình cơ bản và mô hình cải tiến.
+### 📊 Phân tích Kết quả (Result Analysis)
 
----
+#### 1. Báo cáo Metrics của Mô hình Baseline Ban Đầu
 
-## 🧩 Implementation Steps
+| Metric   |   Giá trị  |
+| :------- | :--------: |
+| Accuracy | **0.0000** |
+| F1-score | **0.0000** |
 
-### **Task 1 – Data Preparation**
-Tập dữ liệu nhỏ được lưu trong bộ nhớ (toy dataset) chỉ gồm 6 câu để minh họa pipeline, không phải tập huấn luyện chính.
-
-```python
-texts = [
-  "This movie is fantastic and I love it!",
-  "I hate this film, it's terrible.",
-  "The acting was superb, a truly great experience.",
-  "What a waste of time, absolutely boring.",
-  "Highly recommend this, a masterpiece.",
-  "Could not finish watching, so bad."
-]
-labels = [1, 0, 1, 0, 1, 0]
-```
-
-Sử dụng **CountVectorizer** (từ Lab 2) để chuyển văn bản thành đặc trưng số.
+**Phân tích:** Kết quả bằng **0.0000** trên tập 6 mẫu khẳng định mô hình Baseline thất bại hoàn toàn. Nguyên nhân chính là do **quá khớp (overfitting)** nghiêm trọng vì dữ liệu huấn luyện quá ít, dẫn đến mô hình không thể tổng quát hóa, thậm chí còn **dự đoán ngược nhãn** (True: [1, 0], Pred: [0, 1]).
 
 ---
 
-### **Task 2 – Implementing `TextClassifier`**
-File: `src/models/text_classifier.py`
+#### 2. Báo cáo Metrics của Mô hình Cải tiến
 
-Mô hình Logistic Regression được huấn luyện trên đặc trưng rút ra từ vectorizer.  
-Các hàm `fit`, `predict`, và `evaluate` lần lượt thực hiện huấn luyện, dự đoán và tính toán các chỉ số.
-
----
-
-### **Task 3 – Basic Test Case**
-File: `test/lab5_test.py`
-
-Pipeline cơ bản gồm:
-- Tokenizer: `RegexTokenizer`
-- Vectorizer: `CountVectorizer`
-- Model: `TextClassifier(LogisticRegression)`  
-
-Kết quả:
-```
-Accuracy: 0.5
-F1-score: 0.0
-```
-→ Mô hình baseline chỉ minh họa cách pipeline hoạt động.
+| Mô hình                       |   Đặc trưng   | Phương pháp | Accuracy (AVG) | F1-score (AVG) |
+| :---------------------------- | :-----------: | :---------: | :------------: | :------------: |
+| Multinomial Naive Bayes (MNB) | Count/Unigram |  5-Fold CV  |      0.769     |      0.823     |
+| Logistic Regression (LR)      | Count/Unigram |  5-Fold CV  |    **0.788**   |    **0.838**   |
 
 ---
 
-### **Task 3 (Extended) – PySpark Sentiment Analysis**
-File: `test/lab5_spark_sentiment_analysis.py`
+#### 3. So sánh và Phân tích Hiệu quả Kỹ thuật Cải tiến
 
-Pipeline xử lý dữ liệu lớn từ `data/sentiments.csv`:
-```
-Tokenizer → StopWordsRemover → HashingTF → IDF → LogisticRegression
-```
-Kết quả:
-```
-Accuracy: 0.7295
-F1-score: 0.7266
-```
-→ Mô hình hoạt động ổn định hơn nhờ dataset lớn.
+| Yếu tố Cải tiến                     |      Hiệu quả     | Phân tích                                                                                                                                                                                 |
+| :---------------------------------- | :---------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Tăng Kích thước Dữ liệu & CV**    |  Cực kỳ Hiệu quả  | Đưa hiệu suất từ *0.0000* lên **0.788**. Việc sử dụng 5791 mẫu và Cross-Validation là yếu tố cải tiến quan trọng nhất, giúp khắc phục overfitting và cung cấp ước tính hiệu suất ổn định. |
+| **So sánh Thuật toán (LR vs. MNB)** |  LR vượt trội MNB | Logistic Regression đạt **F1 = 0.838**, cao hơn MNB (F1 = 0.823). LR là mô hình tuyến tính mạnh, có khả năng học các mối quan hệ phức tạp hơn và vượt qua giả định độc lập từ của MNB.    |
+| **Lọc min_df = 2**                  | Hiệu quả tích cực | Giúp giảm nhiễu (*noise*) bằng cách loại bỏ các từ hiếm chỉ xuất hiện 1 lần, tập trung vào các từ khóa có tính phân loại cao.                                                             |
+
+**Kết luận:** Sự cải thiện hiệu suất chủ yếu đến từ việc tăng quy mô dữ liệu và đánh giá ổn định. **Mô hình Logistic Regression** là lựa chọn tối ưu, đạt **F1-score = 0.838**.
 
 ---
 
-## ⚙️ Code Execution Guide
+### 🔗 Thách thức và Giải pháp (Challenges and Solutions)
 
-### Cài đặt thư viện
-```bash
-pip install scikit-learn pyspark
-```
-
-### Chạy các phần của Lab
-```bash
-python test/lab5_test.py                     # baseline
-python test/lab5_spark_sentiment_analysis.py # spark pipeline
-python test/lab5_improvement_test.py         # model improvements
-```
+| Thách thức                   | Mô tả                                                                                                | Giải pháp                                                                                                                                   |
+| :--------------------------- | :--------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Mô hình Thất bại Ban Đầu** | Mô hình Baseline (6 mẫu) đạt 0% Accuracy, không thể đánh giá.                                        | Sử dụng tập dữ liệu lớn (*data/sentiments.csv*) và Cross-Validation để có kết quả đáng tin cậy.                                             |
+| **Xử lý Vocabulary (Rò rỉ)** | Cần đảm bảo việc xây dựng từ vựng và lọc *min_df* chỉ thực hiện trên tập huấn luyện của mỗi fold CV. | Sử dụng hàm `build_token_filter` để tạo tokenizer đã lọc, sau đó truyền vào CountVectorizer (fit_transform() chỉ học từ vựng từ tập Train). |
+| **Đánh giá Công bằng**       | Kết quả trên tập lớn có thể bị ảnh hưởng bởi Train/Test Split ngẫu nhiên.                            | Sử dụng `StratifiedKFold` (5-Fold CV) đảm bảo phân phối nhãn đồng đều và lấy giá trị trung bình (AVG) của các metrics.                      |
 
 ---
 
-## 📊 Task 4 – Model Improvement Experiment
+### 📚 Tài liệu Tham khảo (References)
 
-### **Dataset**
-Từ Task 4 trở đi, sử dụng tập dữ liệu **lớn hơn (`data/sentiments.csv`)** thay cho 6 câu toy dataset ban đầu.
-
-### **Lần 0 – Baseline**
-- Logistic Regression + CountVectorizer  
-- Accuracy ≈ 0.5, F1 ≈ 0.0
-
----
-
-### **Lần 1 – Naive Bayes**
-- Mô hình: `MultinomialNB`  
-- Vectorizer: CountVectorizer (unigram)  
-Kết quả:
-```
-Accuracy: 0.3333
-Precision: 0.3333
-Recall: 1.0000
-F1: 0.5000
-```
-→ Overfit lớp dương tính.
-
----
-
-### **Lần 2 – Stratified Split + Clean Tokenizer**
-- Loại bỏ stopwords, chia dữ liệu cân bằng theo lớp.  
-Kết quả:
-```
-Accuracy: 0.5
-F1: 0.0
-```
-→ Mất từ phủ định gây giảm hiệu năng.
-
----
-
-### **Lần 3 – Bigrams + Balanced Logistic Regression**
-- Dùng bigram để nắm cụm nghĩa (“so_bad”, “highly_recommend”).  
-- `class_weight='balanced'`.  
-Kết quả:
-```
-Accuracy: 0.25
-F1: 0.0
-```
-
----
-
-### **Lần 4 – K-Fold + Negation Bigrams + min_df=2**
-- Thêm **Stratified K-Fold (5 folds)**.  
-- Bắt cặp từ phủ định (“not_good”, “never_watching”).  
-- Lọc từ xuất hiện ít hơn 2 lần (`min_df=2`).  
-Kết quả:
-```
-NB AVG: Accuracy=0.067, F1=0.000
-LR AVG: Accuracy=0.133, F1=0.100
-```
-
----
-
-### **Lần 5 – Character n-grams (3–5)**
-- Sử dụng n-gram ký tự (char-level 3–5).  
-- Giữ được tín hiệu phủ định, tránh mất đặc trưng.  
-Kết quả ổn định hơn:
-```
-Accuracy ≈ 0.45
-F1 ≈ 0.30
-```
-
----
-
-## 🔍 Result Analysis
-
-| Mô hình                              | Vectorizer         | Đặc trưng          | Accuracy | F1-score |
-|-------------------------------------|--------------------|--------------------|-----------|-----------|
-| LogisticRegression (toy baseline)   | CountVectorizer    | unigram (6 câu)    | 0.50      | 0.00      |
-| MultinomialNB                       | CountVectorizer    | unigram (CSV)      | 0.33      | 0.50      |
-| LogisticRegression (balanced)       | CountVectorizer    | bigram (CSV)       | 0.25      | 0.00      |
-| MultinomialNB                       | CountVectorizer    | negation-bigram    | 0.07      | 0.00      |
-| LogisticRegression (balanced)       | CountVectorizer    | negation-bigram    | 0.13      | 0.10      |
-| LogisticRegression (balanced, KFold)| CountVectorizer    | char 3–5 n-grams   | ~0.45     | ~0.30     |
-| PySpark LogisticRegression          | HashingTF + IDF    | full CSV dataset   | 0.73      | 0.73      |
-
----
-
-## ⚠️ Challenges and Solutions
-
-| Thách thức | Giải pháp |
-|-------------|-----------|
-| Dataset nhỏ, toy model không ổn định | Dùng CSV lớn hơn (sentiments.csv) |
-| Mất tín hiệu phủ định | Giữ “not”, “never”, thêm bigram phủ định |
-| Lọc từ quá mạnh (`min_df=2`) làm mất đặc trưng | Giảm `min_df`, thử char n-grams |
-| Kết quả dao động mạnh | Dùng Stratified K-Fold để đánh giá ổn định hơn |
-
----
-
-## 📚 References
-
-- Scikit-learn Documentation – https://scikit-learn.org/stable/  
-- Spark MLlib Guide – https://spark.apache.org/docs/latest/ml-guide.html  
-- Manning et al., *Foundations of Statistical NLP (2008)*  
-- VNU HUS – NLP Lab series materials
-
----
-
-## 🏁 Conclusion
-
-Lab 5 minh họa toàn bộ quy trình phân loại văn bản: từ tiền xử lý, vector hóa, huấn luyện Logistic Regression, đến cải tiến mô hình.  
-Các kỹ thuật như **Naive Bayes**, **bigrams**, và **char n-grams** giúp mô hình mạnh hơn, đặc biệt khi dữ liệu được mở rộng sang `sentiments.csv`.  
-Khi áp dụng PySpark, pipeline có khả năng xử lý dữ liệu lớn và đạt hiệu năng ổn định hơn.
+* **scikit-learn Documentation:** Hướng dẫn sử dụng các lớp `LogisticRegression`, `MultinomialNB`, `StratifiedKFold` và các hàm đánh giá hiệu suất.
+* **Giáo trình Lab 2 & 3:** Triển khai các thành phần tiền xử lý cốt lõi (`RegexTokenizer`, `CountVectorizer`).
+* **Tập dữ liệu:** *data/sentiments.csv* (Nguồn dữ liệu thực nghiệm cho bài toán phân tích tình cảm).
