@@ -66,7 +66,7 @@ Dưới đây là toàn bộ log kết quả thực thi:
 [Running] python -u "c:\Users\fpt\Downloads\nlp1\test\lab1_test.py"
 DEBUG: Calculated ROOT_DIR: c:\Users\fpt\Downloads\nlp1
 
-## 🚀 Lab 1: Text Tokenization Test
+## Lab 1: Text Tokenization Test
 ---
 
 ### Test Case 1: "Hello, world! This is a test."
@@ -86,7 +86,7 @@ DEBUG: Calculated ROOT_DIR: c:\Users\fpt\Downloads\nlp1
 **RegexTokenizer Output:** ['this', 'costs', '$', '1', ',', '234', '.', '50', ',', 'and', 'it', "'", 's', 'complex', '.']
 
 
-## 📊 Task 3: Tokenization with UD_English-EWT Dataset
+## Task 3: Tokenization with UD_English-EWT Dataset
 ---
 INFO: Simulating load from /Data/HaritoWork/Teaching/VNU_HUS/Tu_NLP/data/UD_English-EWT/en_ewt-ud-train.txt. Returning placeholder text.
 
