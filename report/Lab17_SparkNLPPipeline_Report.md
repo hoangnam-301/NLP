@@ -120,12 +120,3 @@ Khi giảm `numFeatures` từ **20,000** xuống **1,000** (trong khi số từ 
 
 ---
 
-## IV. Khó Khăn Gặp Phải Và Giải Pháp
-
-| Khó khăn                               | Nguyên nhân                                                                                                                                                                                                 | Giải pháp                                                                                                                                                                                                                               |
-| -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Lỗi Java 17 khi chạy Word2Vec         | Spark/MLlib (và Kryo serialization) cố gắng truy cập các API nội bộ của Java (`java.lang.invoke`, `java.util`) nhưng bị Java 17 chặn (InaccessibleObjectException).                                      | Cấu hình trong `build.sbt` (hoặc JVM options) thêm: `--add-opens=java.base/java.lang.invoke=ALL-UNNAMED` và `--add-opens=java.base/java.util=ALL-UNNAMED` để cấp quyền truy cập cho Spark/Kryo.                                     |
-| Lỗi `HADOOP_HOME` và `winutils.exe`   | Spark/Hadoop trên Windows yêu cầu `winutils.exe` để thực hiện một số thao tác với hệ thống file (như `saveAsTextFile`, tạo thư mục HDFS giả lập). Nếu không có sẽ sinh lỗi cảnh báo hoặc lỗi runtime.   | Giải pháp tạm thời: tránh gọi các API Hadoop phụ thuộc `winutils.exe` (ví dụ: thay `saveAsTextFile()` bằng `collect()` rồi in ra console / ghi file thủ công). Giải pháp chuẩn: cài Hadoop, đặt biến môi trường `HADOOP_HOME`.      |
-
----
-

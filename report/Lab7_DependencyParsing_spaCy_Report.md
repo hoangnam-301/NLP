@@ -141,16 +141,7 @@ Ví dụ bảng trích xuất một số token:
 
 ---
 
-## V. Thách thức và Giải pháp (Challenges and Solutions)
-
-| Thách thức                          | Mô tả                                                                                                          | Giải pháp                                                                                                                                          |
-|-------------------------------------|---------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
-| Trực quan hóa trong Notebook       | `displacy.serve()` không phù hợp cho môi trường Notebook tương tác.                                         | Thay `displacy.serve()` bằng `displacy.render(doc, style="dep", jupyter=True)` để nhúng biểu đồ trực tiếp trong Notebook.                          |
-| Xử lý các loại Tân ngữ phức tạp    | Trích xuất S–V–O cần phân biệt `dobj`, `iobj`, `pobj` và các cấu trúc phức tạp hơn.                          | Trong Lab, tập trung trước vào `dobj` để đơn giản hóa. Ghi nhận rằng với bài toán thực tế, cần mở rộng logic cho `iobj`, `pobj`, clauses, v.v.    |
-
----
-
-## VI. Tài liệu Tham khảo (Cited References)
+## V. Tài liệu Tham khảo (Cited References)
 
 - **Thư viện spaCy**  
   - Công cụ chính được sử dụng để thực hiện Dependency Parsing.  

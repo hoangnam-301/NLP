@@ -1,4 +1,4 @@
-# 📄 Báo Cáo Lab 2: Count Vectorization (Bag-of-Words)
+# Báo Cáo Lab 2: Count Vectorization (Bag-of-Words)
 
 ---
 
@@ -8,7 +8,7 @@ Mục tiêu của Lab 2 là triển khai mô hình **Count Vectorization** (mô 
 
 ---
 
-## II. Triển Khai (Implementation Details) ⊠
+## II. Triển Khai (Implementation Details) 
 
 ### 1. Cấu Trúc Project
 
@@ -55,7 +55,7 @@ Dưới đây là toàn bộ log kết quả thực thi:
 [Running] python -u "c:\Users\fpt\Downloads\nlp1\test\lab2_test.py"
 DEBUG: Calculated ROOT_DIR: c:\Users\fpt\Downloads\nlp1
 
-## 🧪 Lab 2: Count Vectorization Evaluation
+## Lab 2: Count Vectorization Evaluation
 ---
 INFO: RegexTokenizer instantiated.
 INFO: CountVectorizer instantiated.
@@ -104,26 +104,3 @@ Ma trận DTM có kích thước **3 × 10**. Mỗi vector thể hiện số l�
 **Kết luận:**  
 Quá trình Count Vectorization đã thành công trong việc mã hóa tần suất từ, tạo ra các vector số học chính xác, hoàn thành mục tiêu của Lab 2.
 
----
-
-## V. Khó Khăn Gặp Phải Và Cách Giải Quyết
-
-| Khó khăn              | Mô tả chi tiết                                                                                                                                            | Cách giải quyết                                                                                                                                                   |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Lỗi Import Module     | `ModuleNotFoundError: No module named 'src'` và `No module named 'core'`. Xảy ra khi chạy tệp test từ thư mục con (`test/`).                             | Thiết lập đường dẫn tuyệt đối: thêm thư mục gốc của dự án (`ROOT_DIR`) vào `sys.path`. Đồng thời sửa cú pháp import trong tất cả các tệp thành `from src.tên_thư_mục_con...`. |
-| Lỗi Unicode           | `UnicodeEncodeError` khi in emoji (ví dụ: 🧪) trong terminal.                                                                                               | Sử dụng thư viện `io` để buộc đầu ra chuẩn (`sys.stdout`) sử dụng mã hóa UTF-8 bằng cách thêm `sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')` vào đầu tệp test. |
-| Tính nhất quán Import | Cần đảm bảo rằng việc sửa lỗi trong `lab2_test.py` không làm hỏng `lab1_test.py` (hoặc `main.py`).                                                        | Áp dụng giải pháp thiết lập đường dẫn và cú pháp import tuyệt đối cho cả hai tệp test để đảm bảo tính ổn định trên toàn bộ dự án.                                |
-
----
-
-## VI. Nguồn Tham Khảo (References)
-
-**Code / Model tự tạo:**
-
-- Tokenizer: `RegexTokenizer` (Triển khai trong Lab 1).  
-- Vectorizer: `CountVectorizer` (Triển khai trong Lab 2).
-
-**Nguồn tham khảo bên ngoài:**
-
-- Kiến thức về Python `sys.path` và **Absolute Imports** để giải quyết lỗi import module.  
-- Kỹ thuật xử lý lỗi `UnicodeEncodeError` bằng cách sử dụng `io.TextIOWrapper` để thiết lập mã hóa UTF-8 cho `sys.stdout`.

@@ -135,23 +135,7 @@ Kết quả cho thấy sự khác biệt rõ rệt về khả năng tách token 
 
 ---
 
-## V. Khó Khăn Gặp Phải Và Cách Giải Quyết
-
-| Khó Khăn              | Mô tả chi tiết                                                                                                                                                                                                 | Cách Giải Quyết                                                                                                                                                                                                    |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Lỗi Import Module     | `Error importing modules: No module named 'src'` và các lỗi tương tự. Xảy ra khi tệp test nằm trong thư mục con (`test/`) và các tệp implementation nằm trong `src/`.                                        | Thiết lập đường dẫn tuyệt đối: thêm thư mục gốc của dự án (`ROOT_DIR`) vào `sys.path`. Đồng thời, sửa cú pháp import trong tất cả các tệp thành `from src.tên_thư_mục_con...` (ví dụ: `from src.preprocessing.simple_tokenizer import...`). |
-| Lỗi Unicode           | `UnicodeEncodeError` khi in emoji (ví dụ: 🚀) do bộ mã hóa terminal cũ (`cp1252`) trên Windows.                                                                                                               | Buộc đầu ra chuẩn (`sys.stdout`) sử dụng mã hóa UTF-8 bằng cách thêm: `sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')` vào đầu tệp test.                                                    |
-| Phân biệt Tokenizer   | Ban đầu, `SimpleTokenizer` và `RegexTokenizer` cho ra kết quả quá giống nhau, khó thấy được sự khác biệt.                                                                                                   | Điều chỉnh `SimpleTokenizer` để **không** tách dấu nháy đơn (`'`), để nó giữ nguyên contractions (`"isn't"`), từ đó làm nổi bật rõ ràng khả năng vượt trội của `RegexTokenizer` trong việc phân tách ký hiệu.      |
-
----
-
-## VI. Nguồn Tham Khảo (References)
-
-**Code / Model tự tạo:**
-
-- `SimpleTokenizer` và `RegexTokenizer` (Triển khai trong Lab 1).
-
-**Nguồn tham khảo bên ngoài:**
+## V. Nguồn Tham Khảo (References)
 
 - Kiến thức về **Biểu thức chính quy (Regex)**: cú pháp `\w+` và `[^\w\s]` để phân tách token.  
 - Kiến thức về Python `sys.path` và **Absolute Imports** để thiết lập môi trường dự án.
