@@ -1,5 +1,10 @@
 # BÁO CÁO LAB 5: TEXT CLASSIFICATION
 
+link code: https://github.com/hoangnam-301/NLP/blob/main/src/models/text_classifier.py
+           https://github.com/hoangnam-301/NLP/blob/main/test/lab4_test.py
+           https://github.com/hoangnam-301/NLP/blob/main/test/lab4_spark_sentiment_analysis.py
+           https://github.com/hoangnam-301/NLP/blob/main/test/lab4_task4_improvement.py
+
 ## I. MỤC TIÊU (OBJECTIVE)
 Xây dựng quy trình phân loại văn bản hoàn chỉnh:
 
