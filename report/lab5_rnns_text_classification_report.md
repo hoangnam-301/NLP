@@ -1,5 +1,6 @@
 # BÁO CÁO CHI TIẾT LAB 5: PHÂN LOẠI VĂN BẢN VỚI RNN / LSTM
 
+link code: https://github.com/hoangnam-301/NLP/blob/main/notebook/lab5_rnns_text_classification.ipynb
 ---
 
 ## 1. Bảng so sánh kết quả định lượng (Quantitative Results)

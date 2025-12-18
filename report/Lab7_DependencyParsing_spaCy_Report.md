@@ -1,5 +1,6 @@
 # Báo cáo Bài Lab 7: Phân tích Cú pháp Phụ thuộc với spaCy
 
+link code: https://github.com/hoangnam-301/NLP/blob/main/notebook/lab7.ipynb
 ---
 
 ## I. Giới thiệu

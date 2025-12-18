@@ -1,5 +1,6 @@
 # BÁO CÁO THỰC HÀNH LAB 6: GIỚI THIỆU VỀ TRANSFORMERS
 
+link code: https://github.com/hoangnam-301/NLP/blob/main/notebook/lab6_intro_transformers.ipynb
 ---
 
 ## 1. Giải thích các bước thực hiện

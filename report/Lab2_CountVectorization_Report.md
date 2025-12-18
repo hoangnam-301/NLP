@@ -1,5 +1,8 @@
 # Báo Cáo Lab 2: Count Vectorization (Bag-of-Words)
 
+link code: https://github.com/hoangnam-301/NLP/blob/main/src/core/interfaces.py
+           https://github.com/hoangnam-301/NLP/blob/main/src/representations/count_vectorizer.py
+           https://github.com/hoangnam-301/NLP/blob/main/test/lab2_test.py
 ---
 
 ## I. Mục Tiêu (Objective)

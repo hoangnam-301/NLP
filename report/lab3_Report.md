@@ -1,5 +1,7 @@
 # BÁO CÁO LAB 3: WORD EMBEDDINGS WITH WORD2VEC
 
+link code: https://github.com/hoangnam-301/NLP/blob/main/notebook/lab3.ipynb
+
 ## I. GIỚI THIỆU CHUNG (OBJECTIVE)
 Mục tiêu của bài lab là chuyển đổi phương thức biểu diễn văn bản từ dạng thưa thớt, đa chiều (TF-IDF) sang dạng vector dày đặc (dense vectors) ít chiều hơn nhưng mang đậm tính ngữ nghĩa. Qua đó, học cách sử dụng các mô hình đã được huấn luyện sẵn (Pre-trained) và huấn luyện mô hình từ đầu trên hệ thống tính toán phân tán Apache Spark.
 

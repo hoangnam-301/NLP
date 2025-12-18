@@ -1,5 +1,6 @@
 # BÁO CÁO KẾT QUẢ LAB 5: NHẬN DẠNG THỰC THỂ TÊN (NER)
 
+link code: https://github.com/hoangnam-301/NLP/blob/main/notebook/lab5_rnn_for_ner.ipynb
 ---
 
 ## 1. Giải thích các bước thực hiện

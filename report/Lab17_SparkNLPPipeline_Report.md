@@ -1,5 +1,10 @@
 # 📄 Báo Cáo Lab 17: Xây Dựng Spark NLP Pipeline
 
+link code: https://github.com/hoangnam-301/NLP/blob/main/spark/Lab17_NLPPipeline.scala
+           https://github.com/hoangnam-301/NLP/blob/main/spark/build.sbt
+           https://github.com/hoangnam-301/NLP/blob/main/test/lab3_spark_word2vec_demo.py
+           https://github.com/hoangnam-301/NLP/blob/main/test/lab3_test.py
+           
 ---
 
 ## I. Mục Tiêu Và Các Giai Đoạn Thực Hiện

@@ -1,8 +1,6 @@
 # BÁO CÁO KẾT QUẢ LAB 5: XÂY DỰNG MÔ HÌNH RNN CHO BÀI TOÁN POS TAGGING
 
-**Họ và tên:** Harito  
-**Mã sinh viên:** [Điền ID của bạn]  
-**Ngày thực hiện:** 11/11/2025
+link code: https://github.com/hoangnam-301/NLP/blob/main/notebook/lab5_rnn_for_pos_tagging.ipynb
 
 ---
 

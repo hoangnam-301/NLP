@@ -1,5 +1,10 @@
-# 📄 Báo Cáo Lab 1: Text Tokenization (Tách Từ)
+# Báo Cáo Lab 1: Text Tokenization (Tách Từ)
 
+link code: https://github.com/hoangnam-301/NLP/blob/main/src/core/interfaces.py
+           https://github.com/hoangnam-301/NLP/blob/main/src/preprocessing/simple_tokenizer.py
+           https://github.com/hoangnam-301/NLP/blob/main/src/preprocessing/regex_tokenizer.py
+           https://github.com/hoangnam-301/NLP/blob/main/src/core/dataset_loaders.py
+           https://github.com/hoangnam-301/NLP/blob/main/test/lab1_test.py
 ---
 
 ## I. Mục Tiêu (Objective)

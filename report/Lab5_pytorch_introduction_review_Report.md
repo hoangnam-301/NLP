@@ -1,5 +1,7 @@
 # BÁO CÁO THỰC HÀNH LAB 5: NHẬP MÔN PYTORCH
 
+link code: https://github.com/hoangnam-301/NLP/blob/main/notebook/Lab5_pytorch_introduction_review.ipynb
+
 ## 1. Giải thích các bước thực hiện
 
 Quy trình thực hiện bài Lab được tiến hành qua **3 giai đoạn chính**:
