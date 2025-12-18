@@ -1,7 +1,6 @@
-# BÁO CÁO LAB 3: WORD EMBEDDINGS WITH WORD2VEC
+# BÁO CÁO LAB 3.2: WORD EMBEDDINGS WITH WORD2VEC
 
-link code: https://github.com/hoangnam-301/NLP/blob/main/notebook/lab3.ipynb
-           https://github.com/hoangnam-301/NLP/blob/main/src/representations/word_embedder.py
+link code: https://github.com/hoangnam-301/NLP/blob/main/src/representations/word_embedder.py
            https://github.com/hoangnam-301/NLP/blob/main/test/lab3_test.py
 
 ## I. GIỚI THIỆU CHUNG (OBJECTIVE)
